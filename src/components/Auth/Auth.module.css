@@ -1,0 +1,41 @@
+.container {
+  margin: auto;
+  /* align-content: center; */
+  text-align: center;
+  position: relative;
+  top: 456px;
+  width: 393px;
+  border: solid #938686;
+  height: 374px;
+}
+
+.container2 {
+  position: relative;
+  top: 20px;
+}
+
+.for {
+  width: 393px;
+  padding: 14px;
+}
+
+.for input {
+  width: 310px;
+  height: 46px;
+  font-size: large;
+}
+
+.what {
+  text-align: center;
+  position: relative;
+  top: 462px;
+}
+
+.what h2 {
+  border: solid gray;
+  width: 339px;
+  box-sizing: 106px;
+  display: -webkit-inline-box;
+  padding-left: 29px;
+  cursor: pointer;
+}
