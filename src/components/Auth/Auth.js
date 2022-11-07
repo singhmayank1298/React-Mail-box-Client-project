@@ -4,7 +4,7 @@ import { sendSignInRequest } from "../../store/auth-server";
 import classes from "./Auth.module.css";
 
 const Auth = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
   const emailRef = useRef();
   const passwordRef = useRef();
   //const confirmPasswordRef = useRef();
@@ -16,7 +16,11 @@ const Auth = () => {
       email: emailRef.current.value,
       password: emailRef.current.value,
     };
-    await dispatch(sendSignInRequest(obj));
+    if (isSignUp === true) {
+      await dispatch(sendSignInRequest(obj, "Singup"));
+    } else {
+      await dispatch(sendSignInRequest(obj, "Login"));
+    }
     console.log("dnssjn");
   };
 

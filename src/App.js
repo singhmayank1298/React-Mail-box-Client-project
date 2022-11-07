@@ -1,12 +1,17 @@
 import { useSelector } from "react-redux";
 import AuthPage from "./pages/AuthPage";
+import Header from "./components/Header/Header";
+import { Route } from "react-router-dom";
 
 function App() {
-  const tt = useSelector((state) => state.auth.token);
-  console.log(tt);
+  const token = useSelector((state) => state.auth.token);
+
+  const isLogin = !!token;
   return (
     <>
-      <AuthPage></AuthPage>
+      {isLogin && <Header></Header>}
+      {!isLogin && <AuthPage></AuthPage>}
+      <Route path="/"></Route>
     </>
   );
 }
