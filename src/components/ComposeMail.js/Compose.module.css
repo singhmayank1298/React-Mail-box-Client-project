@@ -1,0 +1,43 @@
+.iff {
+  width: 1177px;
+  border: solid;
+  height: 801px;
+  position: relative;
+  left: 25%;
+}
+
+.fkd {
+  border-bottom: solid gray;
+  height: 88px;
+  display: flex;
+}
+
+.fkd h3 {
+  position: relative;
+  left: 750px;
+}
+.fkd h2 {
+  position: relative;
+  left: 70px;
+}
+
+.fk {
+  border-bottom: solid gray;
+  height: 88px;
+  display: flex;
+}
+.fk input {
+  width: 1170px;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.jjj {
+  width: 259px;
+  height: 44px;
+  position: relative;
+  top: 22px;
+  left: 80px;
+  border-radius: 29px;
+  font-size: larger;
+}

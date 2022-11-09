@@ -1,11 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+let token = localStorage.getItem("token");
 const authSlice = createSlice({
   name: "auth",
-  initialState: { token: "" },
+  initialState: { token: token, email: "" },
   reducers: {
     responseToken(state, { payload }) {
-      state.token = payload;
+      console.log(payload);
+      const convertEmail = payload.email.replace("@", "");
+      const newEmail = convertEmail.replace(".", "");
+      state.token = payload.id;
+      state.email = newEmail;
+      localStorage.setItem("email", newEmail);
+      localStorage.setItem("token", payload.id);
     },
   },
 });

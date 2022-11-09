@@ -15,7 +15,12 @@ export const sendSignInRequest = (obj, loginSingup) => {
       const response = await axios.post(url, obj);
       console.log(response.data);
       if (loginSingup === "Login") {
-        dispatch(authAction.responseToken(response.data.idToken));
+        dispatch(
+          authAction.responseToken({
+            id: response.data.idToken,
+            email: response.data.email,
+          })
+        );
       } else {
         console.log("Your have been signup");
       }
