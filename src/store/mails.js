@@ -2,8 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const mailsSlice = createSlice({
   name: "mails",
-  initialState: {},
-  reducers: {},
+  initialState: { inbox: [] },
+  reducers: {
+    inboxMailsHandler(state, { payload }) {
+      payload.forEach((element) => {
+        state.inbox.push(element);
+      });
+    },
+  },
 });
 
 export const mailAction = mailsSlice.actions;

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 let token = localStorage.getItem("token");
+let email = localStorage.getItem("email");
 const authSlice = createSlice({
   name: "auth",
-  initialState: { token: token, email: "" },
+  initialState: { token: token, email: email },
   reducers: {
     responseToken(state, { payload }) {
       console.log(payload);
