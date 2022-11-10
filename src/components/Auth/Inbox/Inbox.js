@@ -4,6 +4,7 @@ import InboxContent from "./InboxContent";
 
 const Inbox = () => {
   const inboxArray = useSelector((state) => state.mail.inbox);
+
   console.log(inboxArray);
   return (
     <div>
@@ -13,7 +14,9 @@ const Inbox = () => {
             <InboxContent
               email={x.email}
               content={x.content}
+              read={x.read}
               key={Math.random()}
+              id={x.id}
             ></InboxContent>
           );
         })}

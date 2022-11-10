@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
+
 import { mailAction } from "./mails";
 
 export const sendMail = (email, enteredContent, myEmail) => {
@@ -7,6 +9,7 @@ export const sendMail = (email, enteredContent, myEmail) => {
     const obj = {
       content: enteredContent,
       email: myEmail,
+      read: false,
     };
     const response1 = await axios.post(
       `https://mail-box-client-84e39-default-rtdb.firebaseio.com/mails/${email}.json`,
@@ -33,9 +36,21 @@ export const getMails = (myEmail) => {
       mailsArrayDummy.push({
         email: response.data[key].email,
         content: response.data[key].content,
+        read: response.data[key].read,
+        id: key,
       });
     }
     console.log(response.data);
+
     dispatch(mailAction.inboxMailsHandler(mailsArrayDummy));
+  };
+};
+
+export const editMails = (reciverEmail, id) => {
+  return async (dispatch) => {
+    const response = await axios.put(
+      `https://mail-box-client-84e39-default-rtdb.firebaseio.com/mails/${reciverEmail}/${id}/read.json`,
+      true
+    );
   };
 };

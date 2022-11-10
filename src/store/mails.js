@@ -5,9 +5,7 @@ const mailsSlice = createSlice({
   initialState: { inbox: [] },
   reducers: {
     inboxMailsHandler(state, { payload }) {
-      payload.forEach((element) => {
-        state.inbox.push(element);
-      });
+      state.inbox = payload;
     },
   },
 });
