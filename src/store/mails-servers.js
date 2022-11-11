@@ -46,11 +46,23 @@ export const getMails = (myEmail) => {
   };
 };
 
-export const editMails = (reciverEmail, id) => {
+export const editMails = (myEmail, id) => {
   return async (dispatch) => {
     const response = await axios.put(
-      `https://mail-box-client-84e39-default-rtdb.firebaseio.com/mails/${reciverEmail}/${id}/read.json`,
+      `https://mail-box-client-84e39-default-rtdb.firebaseio.com/mails/${myEmail}/${id}/read.json`,
       true
     );
+
+    console.log(response.data);
+    dispatch(mailAction.inboxEditHandler(id));
+  };
+};
+
+export const deleteMails = (myEmail, id) => {
+  return async (dispatch) => {
+    const response = await axios.delete(
+      `https://mail-box-client-84e39-default-rtdb.firebaseio.com/mails/${myEmail}/${id}.json`
+    );
+    dispatch(mailAction.inboxDeleteHandler(id));
   };
 };

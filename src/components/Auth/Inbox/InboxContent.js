@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editMails } from "../../../store/mails-servers";
+import { deleteMails, editMails } from "../../../store/mails-servers";
 import classes from "./InboxContent.module.css";
 
 const InboxContent = (props) => {
   const [inFull, setInFull] = useState(false);
   const dispatch = useDispatch();
+  const myEmail = useSelector((state) => state.auth.email);
 
   //   if (props.read === "false" && readCss === "light") {
   //     setreadCss("blue");
@@ -13,29 +14,38 @@ const InboxContent = (props) => {
 
   const contentChangeHandler = () => {
     setInFull(true);
-    dispatch(editMails(props.email, props.id));
+    dispatch(editMails(myEmail, props.id));
   };
 
-  const readFullMessage = (
+  const deleteHandler = () => {
+    dispatch(deleteMails(myEmail, props.id));
+  };
+
+  const ReadFullMessage = (
     <div>
-      <di>
+      <div>
         <h1>from{props.email}</h1>
         <textarea>{props.content}</textarea>
-      </di>
+      </div>
     </div>
   );
 
   return (
     <>
-      {inFull && readFullMessage}
+      {inFull && ReadFullMessage}
       {!inFull && (
-        <div onClick={contentChangeHandler}>
-          <div>
-            <div className={props.read === false ? classes.blue : ""}></div>
-            <h2>{props.email}</h2>
-            <h3>{props.content}</h3>
+        <>
+          <div onClick={contentChangeHandler}>
+            <div>
+              <div className={props.read === false ? classes.blue : ""}></div>
+              <h2>{props.email}</h2>
+              <h3>{props.content}</h3>
+            </div>
           </div>
-        </div>
+          <div>
+            <button onClick={deleteHandler}>Delete</button>
+          </div>
+        </>
       )}
     </>
   );

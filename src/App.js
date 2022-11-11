@@ -11,6 +11,7 @@ import Inbox from "./components/Auth/Inbox/Inbox";
 function App() {
   const token = useSelector((state) => state.auth.token);
   const myEmail = useSelector((state) => state.auth.email);
+  const arr = useSelector((state) => state.mail.inbox);
 
   const dispatch = useDispatch();
   console.log(myEmail);
