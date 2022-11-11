@@ -2,10 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const mailsSlice = createSlice({
   name: "mails",
-  initialState: { inbox: [] },
+  initialState: { inbox: [], sent: [], content: false },
   reducers: {
     inboxMailsHandler(state, { payload }) {
       state.inbox = payload;
+    },
+    sentMailsHandler(state, { payload }) {
+      state.sent = payload;
     },
     inboxEditHandler(state, { payload }) {
       const array = state.inbox;
@@ -25,6 +28,9 @@ const mailsSlice = createSlice({
           state.inbox.splice(index, 1);
         }
       }
+    },
+    change(state) {
+      state.content = !state.content;
     },
   },
 });

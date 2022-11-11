@@ -18,7 +18,9 @@ const ComposeMail = () => {
   const sendMailHandler = (e) => {
     e.preventDefault();
     const enteredEmailRef = emailRef.current.value;
-    dispatch(sendMail(enteredEmailRef, mailContent, myEmail));
+    const removeAttheRate = enteredEmailRef.replace("@", "");
+    const removeDotEmail = removeAttheRate.replace(".", "");
+    dispatch(sendMail(removeDotEmail, mailContent, myEmail));
   };
 
   return (

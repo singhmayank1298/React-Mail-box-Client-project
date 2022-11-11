@@ -18,7 +18,11 @@ const InboxContent = (props) => {
   };
 
   const deleteHandler = () => {
-    dispatch(deleteMails(myEmail, props.id));
+    if (inFull === false) {
+      dispatch(deleteMails(myEmail, props.id, false));
+    } else {
+      dispatch(deleteMails(myEmail, props.id, true));
+    }
   };
 
   const ReadFullMessage = (

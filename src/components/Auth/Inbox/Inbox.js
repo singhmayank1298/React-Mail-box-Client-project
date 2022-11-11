@@ -1,15 +1,13 @@
-import { useSelector } from "react-redux";
-import classess from "./Inbox.module.css";
 import InboxContent from "./InboxContent";
 
-const Inbox = () => {
-  const inboxArray = useSelector((state) => state.mail.inbox);
+const Inbox = (props) => {
+  //useEffect(() => {}, []);
+  console.log(props.Mails);
 
-  console.log(inboxArray);
   return (
     <div>
       <div>
-        {inboxArray.map((x) => {
+        {props.Mails.map((x) => {
           return (
             <InboxContent
               email={x.email}

@@ -14,7 +14,7 @@ const EditorComponent = (props) => {
       text += ` ${e.text}`;
     });
     setContent(text);
-    props.content(text);
+    props.content(content);
   };
   return (
     <Editor

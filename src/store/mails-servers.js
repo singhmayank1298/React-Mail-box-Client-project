@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 import { mailAction } from "./mails";
 
@@ -11,27 +10,34 @@ export const sendMail = (email, enteredContent, myEmail) => {
       email: myEmail,
       read: false,
     };
-    const response1 = await axios.post(
+    await axios.post(
       `https://mail-box-client-84e39-default-rtdb.firebaseio.com/mails/${email}.json`,
       obj
     );
 
-    const response2 = await axios.post(
-      `https://mail-box-client-84e39-default-rtdb.firebaseio.com/SentMail${myEmail}/${email}.json`,
+    await axios.post(
+      `https://mail-box-client-84e39-default-rtdb.firebaseio.com/SentMail${myEmail}.json`,
       obj
     );
 
-    console.log(response1.data);
+    dispatch(mailAction.change());
   };
 };
 
-export const getMails = (myEmail) => {
+export const getMails = (myEmail, content) => {
   console.log(myEmail);
+  let url = "";
+  if (content === false) {
+    url = `https://mail-box-client-84e39-default-rtdb.firebaseio.com/mails/${myEmail}.json`;
+  } else {
+    url = `https://mail-box-client-84e39-default-rtdb.firebaseio.com/SentMail${myEmail}.json`;
+  }
+
   return async (dispatch) => {
-    const response = await axios.get(
-      `https://mail-box-client-84e39-default-rtdb.firebaseio.com/mails/${myEmail}.json`
-    );
+    const response = await axios.get(url);
+
     let mailsArrayDummy = [];
+
     for (const key in response.data) {
       mailsArrayDummy.push({
         email: response.data[key].email,
@@ -40,9 +46,14 @@ export const getMails = (myEmail) => {
         id: key,
       });
     }
-    console.log(response.data);
+    console.log(mailsArrayDummy);
+    if (content === false) {
+      return dispatch(mailAction.inboxMailsHandler(mailsArrayDummy));
+    } else {
+      return dispatch(mailAction.sentMailsHandler(mailsArrayDummy));
+    }
 
-    dispatch(mailAction.inboxMailsHandler(mailsArrayDummy));
+    // console.log(response.data);
   };
 };
 
@@ -58,11 +69,19 @@ export const editMails = (myEmail, id) => {
   };
 };
 
-export const deleteMails = (myEmail, id) => {
+export const deleteMails = (myEmail, id, forSent) => {
   return async (dispatch) => {
-    const response = await axios.delete(
-      `https://mail-box-client-84e39-default-rtdb.firebaseio.com/mails/${myEmail}/${id}.json`
-    );
-    dispatch(mailAction.inboxDeleteHandler(id));
+    let url = "";
+    if (forSent === true) {
+      url = `https://mail-box-client-84e39-default-rtdb.firebaseio.com/SentMail${myEmail}/${id}.json`;
+    } else {
+      url = `https://mail-box-client-84e39-default-rtdb.firebaseio.com/mails/${myEmail}/${id}.json`;
+    }
+    const response = await axios.delete(url);
+    if (forSent === true) {
+      dispatch(mailAction.change());
+    } else {
+      dispatch(mailAction.inboxDeleteHandler(id));
+    }
   };
 };
