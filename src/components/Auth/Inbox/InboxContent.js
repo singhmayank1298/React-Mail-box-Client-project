@@ -18,10 +18,10 @@ const InboxContent = (props) => {
   };
 
   const deleteHandler = () => {
-    if (inFull === false) {
-      dispatch(deleteMails(myEmail, props.id, false));
-    } else {
+    if (props.delete === true) {
       dispatch(deleteMails(myEmail, props.id, true));
+    } else {
+      dispatch(deleteMails(myEmail, props.id, false));
     }
   };
 

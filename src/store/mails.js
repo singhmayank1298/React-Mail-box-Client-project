@@ -5,7 +5,9 @@ const mailsSlice = createSlice({
   initialState: { inbox: [], sent: [], content: false },
   reducers: {
     inboxMailsHandler(state, { payload }) {
-      state.inbox = payload;
+      if (state.inbox.length < payload.length) {
+        state.inbox = payload;
+      }
     },
     sentMailsHandler(state, { payload }) {
       state.sent = payload;

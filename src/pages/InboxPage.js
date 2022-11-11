@@ -5,9 +5,9 @@ const InboxPage = () => {
   const inboxArray = useSelector((state) => state.mail.inbox);
   console.log(inboxArray);
   return (
-    <div>
-      <Inbox Mails={inboxArray}></Inbox>
-    </div>
+    <>
+      <Inbox Mails={inboxArray} delete={false}></Inbox>
+    </>
   );
 };
 

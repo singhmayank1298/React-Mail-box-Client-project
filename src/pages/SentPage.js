@@ -5,9 +5,9 @@ const SentPage = () => {
   const sentArray = useSelector((state) => state.mail.sent);
 
   return (
-    <div>
-      <Inbox Mails={sentArray}></Inbox>
-    </div>
+    <>
+      <Inbox Mails={sentArray} delete={true}></Inbox>
+    </>
   );
 };
 

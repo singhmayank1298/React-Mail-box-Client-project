@@ -15,6 +15,7 @@ const Inbox = (props) => {
               read={x.read}
               key={Math.random()}
               id={x.id}
+              delete={props.delete}
             ></InboxContent>
           );
         })}

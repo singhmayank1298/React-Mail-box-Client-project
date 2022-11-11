@@ -21,7 +21,9 @@ function App() {
   const isLogin = !!token;
 
   useEffect(() => {
-    dispatch(getMails(myEmail, false));
+    setInterval(() => {
+      dispatch(getMails(myEmail, false));
+    }, 3000);
   }, [myEmail, dispatch]);
 
   useEffect(() => {
