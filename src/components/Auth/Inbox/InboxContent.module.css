@@ -2,7 +2,32 @@
   background: blue;
   /* position: relative; */
   /* left: 323px; */
-  width: 44px;
+  width: 30px;
   height: 30px;
   border: solid;
+  margin-top: 1%;
+}
+
+.lll {
+  width: auto;
+}
+
+.dsmk {
+  display: flex;
+  font-size: 28px;
+  text-shadow: darkcyan;
+  justify-content: space-around;
+  border: solid;
+}
+
+.bor {
+  border: solid black;
+  width: 30px;
+  height: 30px;
+  margin-top: 1%;
+}
+
+.but {
+  text-align: end;
+  font: -webkit-mini-control;
 }

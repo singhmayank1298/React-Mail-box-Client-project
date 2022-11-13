@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import classes from "./SideHeader.module.css";
 
 const SideHeader = () => {
   const inboxArray = useSelector((state) => state.mail.inbox);
@@ -11,7 +12,7 @@ const SideHeader = () => {
     }
   });
   return (
-    <div>
+    <div className={classes.hhh}>
       <h3>{unReadMessages}</h3>
       <NavLink to={"/inbox"}>
         <div>

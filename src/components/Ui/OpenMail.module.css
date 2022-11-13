@@ -1,0 +1,24 @@
+.fff {
+  border: solid;
+  width: 800px;
+  height: 500px;
+  position: relative;
+  left: 35%;
+}
+
+.nmdk {
+  border-bottom: solid;
+  height: 84px;
+  padding: 23px;
+}
+.nmdk input {
+  font-size: 24px;
+  border-radius: 45px;
+  margin: 4px;
+}
+
+.f {
+  width: auto;
+  font-size: 30px;
+  padding: 15px;
+}

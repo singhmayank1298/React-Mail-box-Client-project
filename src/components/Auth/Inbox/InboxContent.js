@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteMails, editMails } from "../../../store/mails-servers";
 import classes from "./InboxContent.module.css";
 
+import { Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { pureFinalPropsSelectorFactory } from "react-redux/es/connect/selectorFactory";
+
 const InboxContent = (props) => {
   const [inFull, setInFull] = useState(false);
   const dispatch = useDispatch();
@@ -36,21 +40,32 @@ const InboxContent = (props) => {
 
   return (
     <>
-      {inFull && ReadFullMessage}
-      {!inFull && (
-        <>
-          <div onClick={contentChangeHandler}>
-            <div>
-              <div className={props.read === false ? classes.blue : ""}></div>
-              <h2>{props.email}</h2>
-              <h3>{props.content}</h3>
+      <li className={classes.lll}>
+        {inFull && ReadFullMessage}
+        {!inFull && (
+          <>
+            <Link
+              to={{
+                pathname: "/openmail",
+                state: {
+                  email: props.email,
+                  content: props.content,
+                },
+              }}
+              onClick={contentChangeHandler}
+            >
+              <div className={classes.dsmk}>
+                <div className={props.read === false ? classes.blue : ""}></div>
+                <div>{props.email}</div>
+                <div>{props.content}</div>
+              </div>
+            </Link>
+            <div className={classes.but}>
+              <button onClick={deleteHandler}>Delete</button>
             </div>
-          </div>
-          <div>
-            <button onClick={deleteHandler}>Delete</button>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </li>
     </>
   );
 };

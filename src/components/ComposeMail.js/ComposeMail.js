@@ -29,12 +29,18 @@ const ComposeMail = () => {
         <form>
           <div className={classes.fkd}>
             <h2>To:</h2>
-            <input className={classes.jjj} ref={emailRef}></input>
+            <input
+              className={classes.jjj}
+              type="Email"
+              placeholder="Email"
+              ref={emailRef}
+              required
+            ></input>
             <h3>CC/Bcc</h3>
           </div>
 
           <div className={classes.fk}>
-            <input></input>
+            <input placeholder="Subject"></input>
           </div>
           <div>
             <button onClick={sendMailHandler}>Send</button>

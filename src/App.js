@@ -9,6 +9,7 @@ import SideHeader from "./components/Ui/SideHeader";
 
 import SentPage from "./pages/SentPage";
 import InboxPage from "./pages/InboxPage";
+import OpenMAil from "./components/Ui/OpenMail";
 
 function App() {
   const token = useSelector((state) => state.auth.token);
@@ -43,6 +44,9 @@ function App() {
         </Route>
         <Route path="/sent">
           <SentPage></SentPage>
+        </Route>
+        <Route path="/openmail">
+          <OpenMAil></OpenMAil>
         </Route>
       </Switch>
     </>

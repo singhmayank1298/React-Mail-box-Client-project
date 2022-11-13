@@ -21,6 +21,7 @@ export const sendMail = (email, enteredContent, myEmail) => {
     );
 
     dispatch(mailAction.change());
+    alert("Mail Sent check to sent box !!!!!");
   };
 };
 
